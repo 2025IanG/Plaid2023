@@ -117,6 +117,11 @@ drive.setMaxOutput(1.0);
         setLeftMotors(speed);
     }
 
+    public void stopMotors() {
+        leftMotorGroup.stopMotor();
+        rightMotorGroup.stopMotor();
+    }
+
     /**
      * @param forward Speed of robot going forward
      * @param rotation Speed of robot's rotation

@@ -42,12 +42,14 @@ public class DefaultDrivetrain extends CommandBase {
     public void execute() {
         m_drivetrain.arcadeDrive(
             RobotContainer.getdriveStick().getLeftY(), //Up and down on drive stick
-            RobotContainer.getdriveStick().getLeftX()); //Left and right on drive stick
+            RobotContainer.getdriveStick().getLeftX() //Left and right on drive stick
+        ); 
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_drivetrain.stopMotors();
     }
 
     // Returns true when the command should end.
