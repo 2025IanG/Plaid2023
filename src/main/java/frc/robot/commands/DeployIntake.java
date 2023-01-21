@@ -16,12 +16,12 @@ public class DeployIntake extends CommandBase {
     }
     @Override
     public void execute() {
-        m_intake.setIntakeSolinoid(Value.kForward);
+        m_intake.setIntakeSolenoid(Value.kForward);
     }
 
     @Override
     public void end(boolean interrupted) {
-        m_intake.setIntakeSolinoid(Value.kOff);
+        m_intake.setIntakeSolenoid(Value.kOff);
     }
 
     @Override

@@ -77,7 +77,7 @@ intakeSolenoid = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, 0, 1);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void setIntakeSolinoid(Value val){
+    public void setIntakeSolenoid(Value val){
         intakeSolenoid.set(val);
         intakeSolenoid_2.set(val);
     }
