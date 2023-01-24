@@ -18,7 +18,7 @@ public class ExtakePiece extends CommandBase {
 
     @Override
     public void execute() {
-        m_intake.setIntakeMotor(-0.75);
+        m_intake.setIntakeBoth(-0.75);
     }
 
     @Override
