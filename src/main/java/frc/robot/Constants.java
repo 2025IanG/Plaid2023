@@ -22,8 +22,8 @@ package frc.robot;
 public class Constants {
    
     public static final class DrivetrainMotors {
-        public static final int rightID1 = 1;
-        public static final int rightID2 = 3;
+        public static final int rightID1 = 3;
+        public static final int rightID2 = 5;
         public static final int leftID1 = 2;
         public static final int leftID2 = 4;
     }

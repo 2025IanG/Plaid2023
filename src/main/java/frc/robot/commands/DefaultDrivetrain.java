@@ -40,10 +40,18 @@ public class DefaultDrivetrain extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        
         m_drivetrain.arcadeDrive(
-            RobotContainer.getdriveStick().getLeftY(), //Up and down on drive stick
-            RobotContainer.getdriveStick().getLeftX() //Left and right on drive stick
-        ); 
+            0.75 * RobotContainer.getdriveStick().getLeftY(), //Up and down on drive stick
+            0.75 * RobotContainer.getdriveStick().getLeftX() //Left and right on drive stick
+        );
+
+        /*
+        m_drivetrain.tankDrive(
+            RobotContainer.getdriveStick().getLeftY(), 
+            RobotContainer.getdriveStick().getRightY()
+        );
+        */
     }
 
     // Called once the command ends or is interrupted.
