@@ -18,6 +18,9 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,6 +32,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
 
     private Command m_autonomousCommand;
+    private final SendableChooser<String> startPosChooser = new SendableChooser<>();	
 
     private RobotContainer m_robotContainer;
 
@@ -42,6 +46,10 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
+
+        startPosChooser.setDefaultOption("Mobility Short", "b1A");
+        startPosChooser.addOption("Mobility Engage", "b2B");
+        startPosChooser.addOption("Mobility Long", "b3C");
     }
 
     /**
@@ -58,6 +66,7 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
+        SmartDashboard.putData("Path Chosen", startPosChooser);
     }
 
 
@@ -77,7 +86,9 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void autonomousInit() {
-        m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+        String startPos = startPosChooser.getSelected();
+
+        m_autonomousCommand = m_robotContainer.getAutonomousCommand(startPos);
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {

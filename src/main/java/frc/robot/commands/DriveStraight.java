@@ -40,9 +40,9 @@ public class DriveStraight extends CommandBase {
 
     /**
      * @desc Command that drives straight with the help of encoders
-     * @param inches Needs to be negative for backwards movement, positive otherwise.
+     * @param subsystem Must be the Drivetrain subsystem.
      * @param percentVBus Requires same sign as inches.
-     * @param useEncoders TRUE to use encoders.
+     * @param inches Uses encoders to determine how far in inches the robot should go.
      */
     public DriveStraight(Drivetrain subsystem, double percentVBus, double inches) {
     	
