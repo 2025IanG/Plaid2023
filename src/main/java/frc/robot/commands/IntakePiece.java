@@ -25,7 +25,7 @@ public class IntakePiece extends CommandBase {
     
     @Override
     public void end(boolean interrupted) {
-        m_intake.stopIntakeMotor();
+        m_intake.stopIntakeMotors();
     }
     
     @Override

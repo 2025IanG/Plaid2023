@@ -102,20 +102,20 @@ private final JoystickButton subX = new JoystickButton(subStick, XboxController.
    */
   private void configureButtonBindings() {
 
-    subY.onTrue(
-      new DeployIntake(m_intake)
-    );
-
-    subA.onTrue(
+    subA.whileTrue(
       new IntakePiece(m_intake)
     );
 
-    subB.onTrue(
+    subB.whileTrue(
       new ExtakePiece(m_intake)
     );
 
     subX.onTrue(
       new StowIntake(m_intake)
+    );
+
+    subY.onTrue(
+      new DeployIntake(m_intake)
     );
   }
 
