@@ -20,9 +20,9 @@ public class AutoPaths extends CommandBase{
 
     public Command MobilityShort() {
         return new SequentialCommandGroup(
-            //DeployIntake.java
+            new DeployIntake(m_intake),
             new WaitCommand(w),
-            //ExtakePiece.java
+            new ExtakePiece(m_intake).withTimeout(3),
             new WaitCommand(w),
             new DriveStraight(m_drive, -1, -180)
         );
@@ -30,9 +30,9 @@ public class AutoPaths extends CommandBase{
 
     public Command MobilityEngage() {
         return new SequentialCommandGroup(
-            //DeployIntake.java
+            new DeployIntake(m_intake),
             new WaitCommand(w),
-            //ExtakePiece.java
+            new ExtakePiece(m_intake).withTimeout(3),
             new WaitCommand(w),
             new DriveStraight(m_drive, -1, -80.125)
         );
@@ -40,9 +40,9 @@ public class AutoPaths extends CommandBase{
 
     public Command MobilityLong() {
         return new SequentialCommandGroup(
-            //DeployIntake.java
+            new DeployIntake(m_intake),
             new WaitCommand(w),
-            //ExtakePiece.java
+            new ExtakePiece(m_intake).withTimeout(3),
             new WaitCommand(w),
             new DriveStraight(m_drive, -1, -216)
         );
