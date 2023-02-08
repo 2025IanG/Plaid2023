@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.Constants.IntakeConstants;
 
 public class Intake extends SubsystemBase {
 
@@ -47,13 +48,13 @@ public class Intake extends SubsystemBase {
          intakeTalon2.setInverted(false);
          */
         
-        intakeSpark = new CANSparkMax(0, MotorType.kBrushless);
-        intakeSpark2 = new CANSparkMax(1, MotorType.kBrushless);
+        intakeSpark = new CANSparkMax(IntakeConstants.intakeM1ID, MotorType.kBrushless);
+        intakeSpark2 = new CANSparkMax(IntakeConstants.intakeM2ID, MotorType.kBrushless);
         
-        intakeSolenoid = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, 0, 1);
+        intakeSolenoid = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, IntakeConstants.intakeDS1F, IntakeConstants.intakeDS1R);
         addChild("intakeSolenoid", intakeSolenoid);
         
-        intakeSolenoid_2 = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, 6, 7);
+        intakeSolenoid_2 = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, IntakeConstants.intakeDS2F, IntakeConstants.intakeDS2R);
         addChild("intakeSolenoid", intakeSolenoid_2);
     }
 
