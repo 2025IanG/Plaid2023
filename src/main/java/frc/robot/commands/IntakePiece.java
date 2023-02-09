@@ -16,6 +16,7 @@ public class IntakePiece extends CommandBase {
     
     @Override
     public void initialize() {
+        m_intake.initializeCounter();
     }
 
     @Override
@@ -30,7 +31,7 @@ public class IntakePiece extends CommandBase {
     
     @Override
     public boolean isFinished() {
-        return false;
+        return m_intake.isSwitchTriggered();
     }
     
     @Override

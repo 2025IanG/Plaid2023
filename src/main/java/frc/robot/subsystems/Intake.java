@@ -26,6 +26,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants.IntakeConstants;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Counter;
 
 public class Intake extends SubsystemBase {
 
@@ -35,21 +37,24 @@ public class Intake extends SubsystemBase {
     private CANSparkMax intakeSpark2;
     private DoubleSolenoid intakeSolenoid;
     private DoubleSolenoid intakeSolenoid_2;
+    private DigitalInput limitSwitch;
+    private Counter counter;
 
     public Intake() {
 
-        /*
-        intakeTalon = new WPI_TalonFX(0);
-         addChild("intakeTalon",intakeTalon);
-         intakeTalon.setInverted(false);
+        //intakeTalon = new WPI_TalonFX(0);
+        // addChild("intakeTalon",intakeTalon);
+        // intakeTalon.setInverted(false);
         
-        intakeTalon2 = new WPI_TalonFX(1);
-         addChild("intakeTalon2", intakeTalon2);
-         intakeTalon2.setInverted(false);
-         */
+        //intakeTalon2 = new WPI_TalonFX(1);
+        // addChild("intakeTalon2", intakeTalon2);
+        // intakeTalon2.setInverted(false);
         
         intakeSpark = new CANSparkMax(IntakeConstants.intakeM1ID, MotorType.kBrushless);
         intakeSpark2 = new CANSparkMax(IntakeConstants.intakeM2ID, MotorType.kBrushless);
+
+        limitSwitch = new DigitalInput(1);
+        counter = new Counter(limitSwitch); 
         
         intakeSolenoid = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, IntakeConstants.intakeDS1F, IntakeConstants.intakeDS1R);
         addChild("intakeSolenoid", intakeSolenoid);
@@ -79,10 +84,12 @@ public class Intake extends SubsystemBase {
     }
 
     public void setIntakeMotor(double speed){
+        //intakeTalon.set(speed);
         intakeSpark.set(speed);
     }
 
     public void setIntake2Motor(double speed) {
+        //intakeTalon2.set(speed);
         intakeSpark2.set(speed);
     }
 
@@ -92,9 +99,18 @@ public class Intake extends SubsystemBase {
     }
 
     public void stopIntakeMotors(){
+        //intakeTalon.stopMotor();
+        //intakeSpark2.stopMotor();
         intakeSpark.stopMotor();
         intakeSpark2.stopMotor();
     }
 
+    public boolean isSwitchTriggered() {
+        return counter.get() > 0;
+    }
+
+    public void initializeCounter() {
+        counter.reset();
+    }
 }
 
