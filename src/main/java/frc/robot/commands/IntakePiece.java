@@ -21,7 +21,7 @@ public class IntakePiece extends CommandBase {
 
     @Override
     public void execute() {
-        m_intake.setIntakeBoth(0.5);
+        m_intake.setIntakeBoth(0.25);
     }
     
     @Override

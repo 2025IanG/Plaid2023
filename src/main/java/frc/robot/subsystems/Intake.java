@@ -28,6 +28,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants.IntakeConstants;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.Compressor;
 
 public class Intake extends SubsystemBase {
 
@@ -39,6 +40,7 @@ public class Intake extends SubsystemBase {
     private DoubleSolenoid intakeSolenoid_2;
     private DigitalInput limitSwitch;
     private Counter counter;
+    private Compressor compressor; 
 
     public Intake() {
 
@@ -53,7 +55,7 @@ public class Intake extends SubsystemBase {
         intakeSpark = new CANSparkMax(IntakeConstants.intakeM1ID, MotorType.kBrushless);
         intakeSpark2 = new CANSparkMax(IntakeConstants.intakeM2ID, MotorType.kBrushless);
 
-        limitSwitch = new DigitalInput(1);
+        limitSwitch = new DigitalInput(0);
         counter = new Counter(limitSwitch); 
         
         intakeSolenoid = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, IntakeConstants.intakeDS1F, IntakeConstants.intakeDS1R);
@@ -61,6 +63,9 @@ public class Intake extends SubsystemBase {
         
         intakeSolenoid_2 = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, IntakeConstants.intakeDS2F, IntakeConstants.intakeDS2R);
         addChild("intakeSolenoid", intakeSolenoid_2);
+
+        //compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+        //boolean cEnable = compressor.isEnabled();
     }
 
     @Override
@@ -112,5 +117,13 @@ public class Intake extends SubsystemBase {
     public void initializeCounter() {
         counter.reset();
     }
+
+    /*public void enableCompressor() {
+        compressor.enableDigital();
+    }
+
+    public void disableCompressor() {
+        compressor.disable();
+    }*/
 }
 
