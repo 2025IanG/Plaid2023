@@ -16,7 +16,7 @@ public class DeployIntake extends CommandBase {
     }
     @Override
     public void execute() {
-        m_intake.setIntakeSolenoid(Value.kReverse);
+        m_intake.setIntakeSolenoid(Value.kForward);
     }
 
     @Override
