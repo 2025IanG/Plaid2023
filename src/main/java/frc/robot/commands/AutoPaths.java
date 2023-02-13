@@ -30,7 +30,7 @@ public class AutoPaths extends CommandBase{
 
     public Command MobilityEngage() {
         return new SequentialCommandGroup(
-            new DeployIntake(m_intake),
+            new DeployIntake(m_intake).withTimeout(0.1),
             new WaitCommand(w),
             new ExtakePiece(m_intake).withTimeout(3),
             new WaitCommand(w),

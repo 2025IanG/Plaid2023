@@ -61,8 +61,8 @@ public class Drivetrain extends SubsystemBase {
          addChild("Left Motor Group", leftMotorGroup);
 
         drive = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
-        //drive.setSafetyEnabled(true);
-        //drive.setExpiration(0.01);
+        drive.setSafetyEnabled(false);
+        drive.setExpiration(0.01);
         drive.setMaxOutput(1.0);
 
         gyro = new AHRS(SPI.Port.kMXP);
