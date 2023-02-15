@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import frc.robot.Constants.DrivetrainMotors;
 import edu.wpi.first.wpilibj.SPI;
@@ -181,5 +183,19 @@ public class Drivetrain extends SubsystemBase {
 		left2.setSelectedSensorPosition(0, 0, 20);
 		right2.setSelectedSensorPosition(0, 0, 20);
 	}
+
+    public void setBrakesOn() {
+        left1.setNeutralMode(NeutralMode.Brake);
+        left2.setNeutralMode(NeutralMode.Brake);
+        right1.setNeutralMode(NeutralMode.Brake);
+        right2.setNeutralMode(NeutralMode.Brake);
+    }
+
+    public void setBrakesOff() {
+        left1.setNeutralMode(NeutralMode.Coast);
+        left2.setNeutralMode(NeutralMode.Coast);
+        right1.setNeutralMode(NeutralMode.Coast);
+        right2.setNeutralMode(NeutralMode.Coast);
+    }
 }
 

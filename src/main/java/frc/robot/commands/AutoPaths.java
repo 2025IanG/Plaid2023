@@ -1,12 +1,9 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.*;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.DrivetrainMotors;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class AutoPaths extends CommandBase{
     private Drivetrain m_drive;
@@ -30,11 +27,13 @@ public class AutoPaths extends CommandBase{
 
     public Command MobilityEngage() {
         return new SequentialCommandGroup(
+            new InstantCommand(m_drive::setBrakesOn, m_drive),
+            new WaitCommand(w),
             new DeployIntake(m_intake).withTimeout(0.1),
             new WaitCommand(w),
-            new ExtakePiece(m_intake).withTimeout(3),
+            new ExtakePiece(m_intake).withTimeout(1.5),
             new WaitCommand(w),
-            new DriveStraight(m_drive, -1, -80.125)
+            new DriveStraight(m_drive, 0.25, 80.125).withTimeout(5)
         );
     }
 

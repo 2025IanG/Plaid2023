@@ -39,9 +39,9 @@ public class DriveStraight extends CommandBase {
     }
 
     /**
-     * @desc Command that drives straight with the help of encoders
+     * <p> Command that drives straight for distance using the TalonFX encoders.
      * @param subsystem Must be the Drivetrain subsystem.
-     * @param percentVBus Requires same sign as inches.
+     * @param percentVBus Power allocated to motors (sign does not matter).
      * @param inches Uses encoders to determine how far in inches the robot should go.
      */
     public DriveStraight(Drivetrain subsystem, double percentVBus, double inches) {
@@ -74,7 +74,7 @@ public class DriveStraight extends CommandBase {
     public void execute() {
     	double proportion = DrivetrainMotors.kP_gyroDriveStraight * (m_subsystem.getGyroYaw() - initialHeading);
     	double leftVal = 1 * vBus;
-		double rightVal = 0.985 * vBus;
+		double rightVal = 1 * vBus;
 		
 		m_subsystem.tankDrive(leftVal - proportion, rightVal + proportion);
     }
