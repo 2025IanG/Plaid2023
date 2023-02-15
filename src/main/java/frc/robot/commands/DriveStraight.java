@@ -25,7 +25,7 @@ public class DriveStraight extends CommandBase {
 	double distThisLeg;
 
 	/**
-	 * @desc Simple drive straight command with only voltage
+	 * <p> Simple drive straight command with only voltage
 	 * @param subsystem Required Subsystem
 	 * @param percentVBus Power given to motors
 	 */
@@ -66,8 +66,10 @@ public class DriveStraight extends CommandBase {
     	// get the robot's current direction, so we can stay pointed that way
     	initialHeading = m_subsystem.getGyroYaw();
 
-		SmartDashboard.putNumber("Start DriveStraight Val:", startValLeft);
-		SmartDashboard.putNumber("End DriveStraight Val:", endValLeft);
+		SmartDashboard.putNumber("Start DriveStraight Left Val:", startValLeft);
+		SmartDashboard.putNumber("End DriveStraight Left Val:", endValLeft);
+		SmartDashboard.putNumber("Start DriveStraight Right Val:", startValRight);
+		SmartDashboard.putNumber("End DriveStraight Right Val:", endValRight);
     }
 
     // Called repeatedly when this Command is scheduled to run

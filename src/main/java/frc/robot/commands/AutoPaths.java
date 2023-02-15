@@ -33,7 +33,8 @@ public class AutoPaths extends CommandBase{
             new WaitCommand(w),
             new ExtakePiece(m_intake).withTimeout(1.5),
             new WaitCommand(w),
-            new DriveStraight(m_drive, 0.25, 80.125).withTimeout(5)
+            new DriveStraight(m_drive, 0.25, 336).withTimeout(5)
+            //new DriveStraight(m_drive, 0.25).withTimeout(2)
         );
     }
 
