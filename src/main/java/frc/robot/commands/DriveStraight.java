@@ -92,14 +92,15 @@ public class DriveStraight extends CommandBase {
 				SmartDashboard.putString("Forward DriveStraight:", "end");
     			return m_subsystem.getLeftEncoderPosition(0) >= endValLeft || m_subsystem.getRightEncoderPosition(0) <= endValRight;
     		}
-    	}
-
-		return false;
+    	} else {
+			return false;
+		}
+		
     }
     
     // Called once after isFinished returns true
     protected void end() {
-    	m_subsystem.tankDrive(0, 0);
+    	m_subsystem.stopMotors();
     }
 
     // Called when another command which requires one or more of the same

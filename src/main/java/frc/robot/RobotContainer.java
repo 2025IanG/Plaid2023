@@ -152,7 +152,7 @@ public static XboxController getsubStick() {
         break;
       case "b2B":
         //Engage Charge Station auto option
-        autoCommand = new SequentialCommandGroup(p.MobilityEngage());
+        autoCommand = new SequentialCommandGroup(p.MobilityEngageTest());
         break;
       case "b3C":
         //Long Drive auto option

@@ -147,7 +147,7 @@ public class Drivetrain extends SubsystemBase {
 		return sensorCounts;
 	}
 
-    private void initGyro() {
+    public void initGyro() {
 		gyro.calibrate();
 
 	}
