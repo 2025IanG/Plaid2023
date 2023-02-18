@@ -46,12 +46,12 @@ public class AutoPaths extends CommandBase{
             new WaitCommand(w),
             new ExtakePiece(m_intake).withTimeout(1.5),
             new WaitCommand(w),
-            new DriveStraight(m_drive, 0.25, 500),
+            new DriveStraight(m_drive, 0.25, 842),
             // new DriveStraight(m_drive, 0.25).withTimeout(3),
-            new WaitCommand(4 * w),
-            new DriveStraight(m_drive, 0.25, -200),
-            new WaitCommand(4 * w),
-            new DriveStraight(m_drive, 0.25, 100)
+            new WaitCommand(w),
+            new DriveStraight(m_drive, 0.25, -275),
+            new WaitCommand(w),
+            new DriveStraight(m_drive, 0.25, 0)
         );
     }
 
