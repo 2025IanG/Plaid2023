@@ -43,7 +43,7 @@ public class DefaultDrivetrain extends CommandBase {
         
         m_drivetrain.arcadeDrive(
             0.75 * RobotContainer.getdriveStick().getLeftY(), //Up and down on drive stick
-            0.75 * RobotContainer.getdriveStick().getLeftX() //Left and right on drive stick
+            0.6 * RobotContainer.getdriveStick().getLeftX() //Left and right on drive stick
         );
 
         /*
