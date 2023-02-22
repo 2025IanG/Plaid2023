@@ -54,7 +54,7 @@ public class DriveStraight extends CommandBase {
 		startValLeft = m_subsystem.getLeftEncoderPosition(0);
 		startValRight = m_subsystem.getRightEncoderPosition(0);
 		endValLeft = startValLeft + m_subsystem.inchesToNativeUnits(inches);
-    	endValRight = startValRight - m_subsystem.inchesToNativeUnits(inches);
+    	endValRight = startValRight + m_subsystem.inchesToNativeUnits(inches);
 
 		useEncoders = true;
     	
@@ -64,7 +64,7 @@ public class DriveStraight extends CommandBase {
     public void initialize() {
     	// set our target position as current position plus desired distance
     	// get the robot's current direction, so we can stay pointed that way
-    	initialHeading = m_subsystem.getGyroYaw();
+    	//initialHeading = m_subsystem.getGyroYaw();
 
 		SmartDashboard.putNumber("Start DriveStraight Left Val:", startValLeft);
 		SmartDashboard.putNumber("End DriveStraight Left Val:", endValLeft);
@@ -74,33 +74,51 @@ public class DriveStraight extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
-    	double proportion = DrivetrainMotors.kP_gyroDriveStraight * (m_subsystem.getGyroYaw() - initialHeading);
+    	//double proportion = DrivetrainMotors.kP_gyroDriveStraight * (m_subsystem.getGyroYaw() - initialHeading);
     	double leftVal = 1 * vBus;
 		double rightVal = 1 * vBus;
+
+		double error = -m_subsystem.getGyroRate();
+		SmartDashboard.putNumber("Gyro Error", error);
 		
-		m_subsystem.tankDrive(leftVal - proportion, rightVal + proportion);
+		m_subsystem.tankDrive(
+			leftVal + DrivetrainMotors.kP_gyroDriveStraight * error,
+			rightVal - DrivetrainMotors.kP_gyroDriveStraight * error);
+
+		SmartDashboard.putNumber("Current DriveStraight Right Val", m_subsystem.getRightEncoderPosition(0));
+		SmartDashboard.putNumber("Current DriveStraight Left Val", m_subsystem.getLeftEncoderPosition(0));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     public boolean isFinished() {
     	if(useEncoders) {
     		// have we gone far enough?
-    		if(Math.signum(vBus) < 0) {
+    		if(vBus < 0) {
 				SmartDashboard.putString("Reverse DriveStraight:", "end");
-    			return m_subsystem.getLeftEncoderPosition(0) <= endValLeft || m_subsystem.getRightEncoderPosition(0) >= endValRight;
+    			return m_subsystem.getLeftEncoderPosition(0) <= endValLeft && m_subsystem.getRightEncoderPosition(0) <= endValRight;
     		} else {
 				SmartDashboard.putString("Forward DriveStraight:", "end");
-    			return m_subsystem.getLeftEncoderPosition(0) >= endValLeft || m_subsystem.getRightEncoderPosition(0) <= endValRight;
+    			return m_subsystem.getLeftEncoderPosition(0) >= endValLeft && m_subsystem.getRightEncoderPosition(0) >= endValRight;
     		}
     	} else {
 			return false;
 		}
 		
+		// if(useEncoders) {
+		// 	if (Math.abs(m_subsystem.getRightEncoderPosition(0)) > 2048 || Math.abs(m_subsystem.getLeftEncoderPosition(0)) > 2048) {
+		// 		return true;
+		// 	} else {
+		// 		return false;
+		// 	}
+		// } else {
+		// 	return false;
+		// }
     }
     
     // Called once after isFinished returns true
     protected void end() {
     	m_subsystem.stopMotors();
+		m_subsystem.resetEncoders();
     }
 
     // Called when another command which requires one or more of the same

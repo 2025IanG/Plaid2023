@@ -22,7 +22,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import frc.robot.Constants.DrivetrainMotors;
 import edu.wpi.first.wpilibj.SPI;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 import frc.robot.Constants;
 
@@ -34,7 +35,7 @@ public class Drivetrain extends SubsystemBase {
     private WPI_TalonFX left2;
     private MotorControllerGroup leftMotorGroup;
     private DifferentialDrive drive;
-    private AHRS gyro;
+    private ADXRS450_Gyro gyro;
     public final double minVBusOutVal = 0.2;
 
     public Drivetrain() {
@@ -67,7 +68,7 @@ public class Drivetrain extends SubsystemBase {
         drive.setExpiration(0.01);
         drive.setMaxOutput(1.0);
 
-        gyro = new AHRS(SPI.Port.kMXP);
+        gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
 
     }
 
@@ -142,7 +143,7 @@ public class Drivetrain extends SubsystemBase {
 
 	public double inchesToNativeUnits(double inches) {
 		double wheelRotations = inches / DrivetrainMotors.kWheelCircumference;
-		double motorRotations = wheelRotations * DrivetrainMotors.kGearRatio;
+		double motorRotations = wheelRotations * (60/14);
 		int sensorCounts = (int)(motorRotations * DrivetrainMotors.kEncoderCPR);
 		return sensorCounts;
 	}
@@ -156,21 +157,21 @@ public class Drivetrain extends SubsystemBase {
 		gyro.reset();
 	}
 
-	public double getGyroYaw() {
-		return gyro.getYaw();
-	}
+	// public double getGyroYaw() {
+	// 	return gyro.getYaw();
+	// }
 
 	public double getGyroRate() {
 		return gyro.getRate();
 	}
 
-	public double getGyroPitch() {
-		return gyro.getPitch();
-	}
+	// public double getGyroPitch() {
+	// 	return gyro.getPitch();
+	// }
 
-	public double getGyroRoll() {
-		return gyro.getRoll();
-	}
+	// public double getGyroRoll() {
+	// 	return gyro.getRoll();
+	// }
 
     public double thresholdVBus(double val) {
 		if(Math.abs(val) < minVBusOutVal) {

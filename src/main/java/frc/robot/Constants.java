@@ -28,7 +28,7 @@ public class Constants {
         public static final int leftID2 = 4;
 
         public static final int kEncoderCPR = 2048;
-        public static final int kGearRatio = 50/24;
+        public static final double kGearRatio = 50/24;
         public static final double kWheelRadiusInches = 3;
         public static final double kWheelCircumference = 2 * Math.PI * kWheelRadiusInches;
 
@@ -38,7 +38,7 @@ public class Constants {
         public static final double kTurnToleranceDeg = 5;
         public static final double kTurnRateToleranceDegPerS = 10;
 
-        public static final double kP_gyroDriveStraight = 0;
+        public static final double kP_gyroDriveStraight = 10;
 
         public static final double kP_forward = 0;
         public static final double kI_forward = 0;

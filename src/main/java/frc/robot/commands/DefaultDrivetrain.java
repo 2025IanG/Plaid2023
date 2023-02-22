@@ -16,6 +16,7 @@ import java.util.function.DoubleSupplier;
 
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -40,6 +41,9 @@ public class DefaultDrivetrain extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
+        double error = -m_drivetrain.getGyroRate();
+        SmartDashboard.putNumber("Gyro Error Teleop", error);
         
         m_drivetrain.arcadeDrive(
             0.75 * RobotContainer.getdriveStick().getLeftY(), //Up and down on drive stick
