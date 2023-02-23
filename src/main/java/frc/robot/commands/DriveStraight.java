@@ -64,7 +64,7 @@ public class DriveStraight extends CommandBase {
     public void initialize() {
     	// set our target position as current position plus desired distance
     	// get the robot's current direction, so we can stay pointed that way
-    	//initialHeading = m_subsystem.getGyroYaw();
+    	initialHeading = m_subsystem.getGyroYaw();
 
 		SmartDashboard.putNumber("Start DriveStraight Left Val:", startValLeft);
 		SmartDashboard.putNumber("End DriveStraight Left Val:", endValLeft);
@@ -74,16 +74,17 @@ public class DriveStraight extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
-    	//double proportion = DrivetrainMotors.kP_gyroDriveStraight * (m_subsystem.getGyroYaw() - initialHeading);
-    	double leftVal = 1 * vBus;
+    	// double proportion = DrivetrainMotors.kP_gyroDriveStraight * (m_subsystem.getGyroYaw() - initialHeading);
+    	double leftVal = 0.985 * vBus;
 		double rightVal = 1 * vBus;
 
 		double error = -m_subsystem.getGyroRate();
 		SmartDashboard.putNumber("Gyro Error", error);
 		
 		m_subsystem.tankDrive(
-			leftVal + DrivetrainMotors.kP_gyroDriveStraight * error,
-			rightVal - DrivetrainMotors.kP_gyroDriveStraight * error);
+			leftVal + (DrivetrainMotors.kP_gyroDriveStraight * error),
+			rightVal + (DrivetrainMotors.kP_gyroDriveStraight * error)
+		);
 
 		SmartDashboard.putNumber("Current DriveStraight Right Val", m_subsystem.getRightEncoderPosition(0));
 		SmartDashboard.putNumber("Current DriveStraight Left Val", m_subsystem.getLeftEncoderPosition(0));
