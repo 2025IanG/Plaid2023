@@ -47,6 +47,8 @@ public class RobotContainer {
 //it will cause problems. (don't know why)
 private static final XboxController subStick = new XboxController(1);
 private static final XboxController driveStick = new XboxController(0);
+private final JoystickButton driveRB = new JoystickButton(new XboxController(0), 6);
+private final JoystickButton driveLB = new JoystickButton(new XboxController(0), 5);
 private final JoystickButton subA = new JoystickButton(new XboxController(1), 1);
 private final JoystickButton subB = new JoystickButton(new XboxController(1), 2);
 private final JoystickButton subX = new JoystickButton(new XboxController(1), 3);
@@ -118,6 +120,14 @@ private final JoystickButton subY = new JoystickButton(new XboxController(1), 4)
 
     subY.onTrue(
       new DeployIntake(m_intake)
+    );
+
+    driveRB.onTrue(
+      new InstantCommand(m_drivetrain::setBrakesOn, m_drivetrain)
+    );
+
+    driveLB.onTrue(
+      new InstantCommand(m_drivetrain::setBrakesOff, m_drivetrain)
     );
   }
 
