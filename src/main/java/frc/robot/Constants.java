@@ -38,7 +38,7 @@ public class Constants {
         public static final double kTurnToleranceDeg = 5;
         public static final double kTurnRateToleranceDegPerS = 10;
 
-        public static final double kP_gyroDriveStraight = 0.7;
+        public static final double kP_gyroDriveStraight = 1.3;
 
         public static final double kP_forward = 0;
         public static final double kI_forward = 0;

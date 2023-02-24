@@ -51,9 +51,9 @@ public class AutoPaths extends CommandBase{
             // new DriveStraight(m_drive, 0.25, -275)
             // new WaitCommand(w),
             // new DriveStraight(m_drive, 0.25, 0)
-            new DriveStraight(m_drive, 0.25, -100 * 2.05),
-            new WaitCommand(w),
-            new DriveStraight(m_drive, 0.25, 50 * 2.05)
+            new DriveStraight(m_drive, 0.25, -200 * 2 + (1-200/100)*8),
+            new WaitCommand(2 * w),
+            new DriveStraight(m_drive, 0.25, 100 * 2 + (1+100/100)*8)
         );
     }
 

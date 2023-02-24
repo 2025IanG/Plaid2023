@@ -74,17 +74,26 @@ public class DriveStraight extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
-    	// double proportion = DrivetrainMotors.kP_gyroDriveStraight * (m_subsystem.getGyroYaw() - initialHeading);
-    	double leftVal = 0.985 * vBus;
-		double rightVal = 1 * vBus;
+		//kP_gyroDriveStraight later
+    	double diversion = (m_subsystem.getGyroRate());
+		SmartDashboard.putNumber("Diversion", diversion);
+    	double leftVal = vBus;
+		double rightVal = vBus;
 
-		double error = -m_subsystem.getGyroRate();
-		SmartDashboard.putNumber("Gyro Error", error);
+		// double error = m_subsystem.getGyroYaw();
+		// SmartDashboard.putNumber("Gyro Error", error);
+		if (diversion < 0) {
+			m_subsystem.tankDrive(
+				leftVal,
+				rightVal - 1 * diversion
+			);
+		} else {
+			m_subsystem.tankDrive(
+				leftVal + 1 * diversion,
+				rightVal
+			);
+		}
 		
-		m_subsystem.tankDrive(
-			leftVal + (DrivetrainMotors.kP_gyroDriveStraight * error),
-			rightVal + (DrivetrainMotors.kP_gyroDriveStraight * error)
-		);
 
 		SmartDashboard.putNumber("Current DriveStraight Right Val", m_subsystem.getRightEncoderPosition(0));
 		SmartDashboard.putNumber("Current DriveStraight Left Val", m_subsystem.getLeftEncoderPosition(0));
