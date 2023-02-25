@@ -11,6 +11,7 @@
 // ROBOTBUILDER TYPE: Command.
 
 package frc.robot.commands;
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import java.util.function.DoubleSupplier;
 
@@ -23,6 +24,7 @@ import frc.robot.RobotContainer;
 public class DefaultDrivetrain extends CommandBase {
 
         private final Drivetrain m_drivetrain;
+        private final SlewRateLimiter acceleration;
 
 
     public DefaultDrivetrain(Drivetrain subsystem) {
@@ -30,6 +32,7 @@ public class DefaultDrivetrain extends CommandBase {
         m_drivetrain = subsystem;
         addRequirements(m_drivetrain);
 
+        acceleration = new SlewRateLimiter(0.8, -0.8, 0.7);
     }
 
     // Called when the command is initially scheduled.
@@ -40,11 +43,13 @@ public class DefaultDrivetrain extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
+        double forward = 0.75 * RobotContainer.getdriveStick().getLeftY();
+        double rotation = 0.6 * RobotContainer.getdriveStick().getLeftX();
+
         
-        m_drivetrain.arcadeDrive(
-            0.75 * RobotContainer.getdriveStick().getLeftY(), //Up and down on drive stick
-            0.6 * RobotContainer.getdriveStick().getLeftX() //Left and right on drive stick
-        );
+        
+        m_drivetrain.arcadeDrive(acceleration.calculate(forward), rotation);
 
         /*
         m_drivetrain.tankDrive(

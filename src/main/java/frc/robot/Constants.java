@@ -35,8 +35,8 @@ public class Constants {
         public static final int intakeM2ID = 7;
 
         //Intake Double Solenoid IDs
-        public static final int intakeDS1F = 1;
-        public static final int intakeDS1R = 0;
+        public static final int intakeDS1F = 0;
+        public static final int intakeDS1R = 1;
         public static final int intakeDS2F = 2;
         public static final int intakeDS2R = 3;
     }
