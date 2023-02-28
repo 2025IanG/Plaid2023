@@ -17,11 +17,13 @@ public class AutoPaths extends CommandBase{
 
     public Command MobilityShort() {
         return new SequentialCommandGroup(
-            new DeployIntake(m_intake),
+            new InstantCommand(m_drive::setBrakesOn, m_drive),
             new WaitCommand(w),
-            new ExtakePiece(m_intake).withTimeout(3),
+            new DeployIntake(m_intake).withTimeout(0.1),
             new WaitCommand(w),
-            new DriveStraight(m_drive, -1, -180)
+            new ExtakePiece(m_intake).withTimeout(1.5),
+            new WaitCommand(w),
+            new DriveStraight(m_drive, 0.25, 200 * 2 + (1+200/100)*8)
         );
     }
 
@@ -33,37 +35,21 @@ public class AutoPaths extends CommandBase{
             new WaitCommand(w),
             new ExtakePiece(m_intake).withTimeout(1.5),
             new WaitCommand(w),
-            new DriveStraight(m_drive, 0.25, 336).withTimeout(5)
-            //new DriveStraight(m_drive, 0.25).withTimeout(2)
-        );
-    }
-
-    public Command MobilityEngageTest() {
-        return new SequentialCommandGroup(
-            new InstantCommand(m_drive::setBrakesOn, m_drive),
-            // new WaitCommand(w),
-            // new DeployIntake(m_intake).withTimeout(0.1),
-            // new WaitCommand(w),
-            // new ExtakePiece(m_intake).withTimeout(1.5),
-            // new WaitCommand(w),
-            // new DriveStraight(m_drive, 0.25, 842),
-            // new WaitCommand(w),
-            // new DriveStraight(m_drive, 0.25, -275)
-            // new WaitCommand(w),
-            // new DriveStraight(m_drive, 0.25, 0)
-            new DriveStraight(m_drive, 0.25, -200 * 2 + (1-200/100)*8),
-            new WaitCommand(2 * w),
-            new DriveStraight(m_drive, 0.25, 100 * 2 + (1+100/100)*8)
+            new DriveStraight(m_drive, 0.25, 202 * 2 + (1+202/100)*8),
+            new WaitCommand(w),
+            new DriveStraight(m_drive, 0.25, -66 * 2 + (1-66/100)*8)
         );
     }
 
     public Command MobilityLong() {
         return new SequentialCommandGroup(
-            new DeployIntake(m_intake),
+            new InstantCommand(m_drive::setBrakesOn, m_drive),
             new WaitCommand(w),
-            new ExtakePiece(m_intake).withTimeout(3),
+            new DeployIntake(m_intake).withTimeout(0.1),
             new WaitCommand(w),
-            new DriveStraight(m_drive, -1, -216)
+            new ExtakePiece(m_intake).withTimeout(1.5),
+            new WaitCommand(w),
+            new DriveStraight(m_drive, 0.25, 222 * 2 + (1+222/100)*8)
         );
     }
 }
