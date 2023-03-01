@@ -79,21 +79,34 @@ public class DriveStraight extends CommandBase {
 		SmartDashboard.putNumber("Diversion", diversion);
     	double leftVal = vBus;
 		double rightVal = vBus;
-
-		// double error = m_subsystem.getGyroYaw();
-		// SmartDashboard.putNumber("Gyro Error", error);
-		if (diversion < 0) {
-			m_subsystem.tankDrive(
-				leftVal,
-				rightVal - 1 * diversion
-			);
-		} else {
-			m_subsystem.tankDrive(
-				leftVal + 1 * diversion,
-				rightVal
-			);
-		}
 		
+		if (leftVal > 0 && rightVal > 0) {
+			if (diversion < 0) {
+				m_subsystem.tankDrive(
+					leftVal,
+					rightVal - 1 * diversion
+				);
+			} else {
+					m_subsystem.tankDrive(
+					leftVal + 1 * diversion,
+					rightVal
+				);
+			}	
+		} else if (leftVal < 0 && rightVal < 0) {
+			if (diversion > 0) {
+				m_subsystem.tankDrive(
+					leftVal,
+					rightVal - 1 * diversion
+				);
+			} else {
+					m_subsystem.tankDrive(
+					leftVal + 1 * diversion,
+					rightVal
+				);
+			}
+		}
+
+			
 
 		SmartDashboard.putNumber("Current DriveStraight Right Val", m_subsystem.getRightEncoderPosition(0));
 		SmartDashboard.putNumber("Current DriveStraight Left Val", m_subsystem.getLeftEncoderPosition(0));

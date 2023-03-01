@@ -37,7 +37,11 @@ public class AutoPaths extends CommandBase{
             new WaitCommand(w),
             new DriveStraight(m_drive, 0.25, 202 * 2 + (1+202/100)*8),
             new WaitCommand(w),
+            // new InstantCommand(m_drive::resetEncoders, m_drive),
+            new WaitCommand(w),
             new DriveStraight(m_drive, 0.25, -66 * 2 + (1-66/100)*8)
+            // // new WaitCommand(w),
+            // new DriveStraight(m_drive, 0.25, 136 * 2 + (1+136/100)*8)
         );
     }
 
