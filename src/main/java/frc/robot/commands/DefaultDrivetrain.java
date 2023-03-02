@@ -17,6 +17,7 @@ import java.util.function.DoubleSupplier;
 
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -47,6 +48,8 @@ public class DefaultDrivetrain extends CommandBase {
         double forward = 0.75 * RobotContainer.getdriveStick().getLeftY();
         double rotation = 0.6 * RobotContainer.getdriveStick().getLeftX();
 
+        double error = -m_drivetrain.getGyroRate();
+        SmartDashboard.putNumber("Gyro Error Teleop", error);
         
         
         m_drivetrain.arcadeDrive(acceleration.calculate(forward), rotation);
