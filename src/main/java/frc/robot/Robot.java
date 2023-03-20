@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
         startPosChooser.addOption("Mobility Long", "b3C");
 
         m_robotContainer.m_drivetrain.resetEncoders();
-        m_robotContainer.m_drivetrain.initGyro();
+        //m_robotContainer.m_drivetrain.initGyro();
     }
 
     /**
@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
             m_autonomousCommand.schedule();
         }
 
-        m_robotContainer.m_drivetrain.resetGyro();
+        m_robotContainer.m_drivetrain.initGyro();
     }
 
     /**

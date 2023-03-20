@@ -22,18 +22,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DefaultDrivetrain extends CommandBase {
+public class ArcadeDriveFree extends CommandBase {
 
         private final Drivetrain m_drivetrain;
-        private final SlewRateLimiter acceleration;
 
 
-    public DefaultDrivetrain(Drivetrain subsystem) {
+    public ArcadeDriveFree(Drivetrain subsystem) {
 
         m_drivetrain = subsystem;
         addRequirements(m_drivetrain);
-
-        acceleration = new SlewRateLimiter(0.8, -0.8, 0.7);
     }
 
     // Called when the command is initially scheduled.
@@ -45,14 +42,11 @@ public class DefaultDrivetrain extends CommandBase {
     @Override
     public void execute() {
 
-        double forward = 0.75 * RobotContainer.getdriveStick().getLeftY();
-        double rotation = 0.6 * RobotContainer.getdriveStick().getLeftX();
-
-        double error = -m_drivetrain.getGyroRate();
-        SmartDashboard.putNumber("Gyro Error Teleop", error);
+        double forward = 0.9 * RobotContainer.getdriveStick().getLeftY();
+        double rotation = 0.75 * RobotContainer.getdriveStick().getLeftX();
         
         
-        m_drivetrain.arcadeDrive(acceleration.calculate(forward), rotation);
+        m_drivetrain.arcadeDrive(forward, rotation);
 
         /*
         m_drivetrain.tankDrive(

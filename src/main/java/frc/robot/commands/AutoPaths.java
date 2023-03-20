@@ -19,29 +19,22 @@ public class AutoPaths extends CommandBase{
         return new SequentialCommandGroup(
             new InstantCommand(m_drive::setBrakesOn, m_drive),
             new WaitCommand(w),
-            new DeployIntake(m_intake).withTimeout(0.1),
-            new WaitCommand(w),
             new ExtakePiece(m_intake).withTimeout(1.5),
             new WaitCommand(w),
-            new DriveStraight(m_drive, 0.25, 200 * 2 + (1+200/100)*8)
+            new DriveStraight(m_drive, 0.25, 100 * 2 + (1+100/100)*8)
         );
     }
 
     public Command MobilityEngage() {
         return new SequentialCommandGroup(
             new InstantCommand(m_drive::setBrakesOn, m_drive),
-            new WaitCommand(w),
-            new DeployIntake(m_intake).withTimeout(0.1),
-            new WaitCommand(w),
-            new ExtakePiece(m_intake).withTimeout(1.5),
-            new WaitCommand(w),
-            new DriveStraight(m_drive, 0.25, 202 * 2 + (1+202/100)*8),
-            new WaitCommand(w),
-            // new InstantCommand(m_drive::resetEncoders, m_drive),
-            new WaitCommand(w),
-            new DriveStraight(m_drive, 0.25, -66 * 2 + (1-66/100)*8)
-            // // new WaitCommand(w),
-            // new DriveStraight(m_drive, 0.25, 136 * 2 + (1+136/100)*8)
+            // new InstantCommand(m_drive::initGyro, m_drive),
+            // new WaitCommand(w),
+            // new ExtakePiece(m_intake).withTimeout(1.5),
+            // new WaitCommand(w),
+            // new DriveStraight(m_drive, 0.25, 90 * 2 + (1+90/100)*8),
+            // new WaitCommand(w),
+            new GyroEngage(m_drive)
         );
     }
 
@@ -49,11 +42,9 @@ public class AutoPaths extends CommandBase{
         return new SequentialCommandGroup(
             new InstantCommand(m_drive::setBrakesOn, m_drive),
             new WaitCommand(w),
-            new DeployIntake(m_intake).withTimeout(0.1),
-            new WaitCommand(w),
             new ExtakePiece(m_intake).withTimeout(1.5),
             new WaitCommand(w),
-            new DriveStraight(m_drive, 0.25, 222 * 2 + (1+222/100)*8)
+            new DriveStraight(m_drive, 0.25, 190 * 2 + (1+190/100)*8)
         );
     }
 }

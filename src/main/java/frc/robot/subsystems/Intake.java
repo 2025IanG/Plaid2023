@@ -53,10 +53,10 @@ public class Intake extends SubsystemBase {
         intakeSpark2 = new CANSparkMax(7, MotorType.kBrushless);
          intakeSpark2.setInverted(false);
         
-        intakeSolenoid = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, 1, 0);
+        intakeSolenoid = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, IntakeConstants.intakeDS1F, IntakeConstants.intakeDS1R);
         addChild("intakeSolenoid", intakeSolenoid);
         
-        intakeSolenoid_2 = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, 2, 3);
+        intakeSolenoid_2 = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, IntakeConstants.intakeDS2F, IntakeConstants.intakeDS2R);
         addChild("intakeSolenoid", intakeSolenoid_2);
     }
 
