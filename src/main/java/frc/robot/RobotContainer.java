@@ -136,21 +136,21 @@ private final JoystickButton subY = new JoystickButton(new XboxController(1), 4)
       new InstantCommand(m_drivetrain::setBrakesOff, m_drivetrain)
     );
 
-    driveA.whileTrue(
-      new IntakePiece(m_intake)
-    );
+    // driveA.whileTrue(
+    //   new IntakePiece(m_intake)
+    // );
 
-    driveB.whileTrue(
-      new ExtakePiece(m_intake)
-    );
+    // driveB.whileTrue(
+    //   new ExtakePiece(m_intake)
+    // );
 
-    driveX.onTrue(
-      new StowIntake(m_intake)
-    );
+    // driveX.onTrue(
+    //   new StowIntake(m_intake)
+    // );
 
-    driveY.onTrue(
-      new DeployIntake(m_intake)
-    );
+    // driveY.onTrue(
+    //   new DeployIntake(m_intake)
+    // );
 
     driveBack.whileTrue(
       new GyroEngage(m_drivetrain)
