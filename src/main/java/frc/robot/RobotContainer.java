@@ -49,8 +49,12 @@ public class RobotContainer {
 private static final XboxController subStick = new XboxController(1);
 private static final XboxController driveStick = new XboxController(0);
 private final JoystickButton driveA = new JoystickButton(new XboxController(0), 1);
-private final JoystickButton driveRB = new JoystickButton(new XboxController(0), 6);
+private final JoystickButton driveB = new JoystickButton(new XboxController(0), 2);
+private final JoystickButton driveX = new JoystickButton(new XboxController(0), 3);
+private final JoystickButton driveY = new JoystickButton(new XboxController(0), 4);
 private final JoystickButton driveLB = new JoystickButton(new XboxController(0), 5);
+private final JoystickButton driveRB = new JoystickButton(new XboxController(0), 6);
+private final JoystickButton driveBack = new JoystickButton(new XboxController(0), 7);
 private final JoystickButton subA = new JoystickButton(new XboxController(1), 1);
 private final JoystickButton subB = new JoystickButton(new XboxController(1), 2);
 private final JoystickButton subX = new JoystickButton(new XboxController(1), 3);
@@ -133,7 +137,23 @@ private final JoystickButton subY = new JoystickButton(new XboxController(1), 4)
     );
 
     driveA.whileTrue(
-      new ArcadeDriveFree(m_drivetrain)
+      new IntakePiece(m_intake)
+    );
+
+    driveB.whileTrue(
+      new ExtakePiece(m_intake)
+    );
+
+    driveX.onTrue(
+      new StowIntake(m_intake)
+    );
+
+    driveY.onTrue(
+      new DeployIntake(m_intake)
+    );
+
+    driveBack.whileTrue(
+      new GyroEngage(m_drivetrain)
     );
   }
 

@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class GyroEngage extends CommandBase{
 
     private Drivetrain m_subsystem;
-    double maxAngle = -88.5;
-    double minAngle = -91.5;
+    double maxAngle = 2.5;
+    double minAngle = -2.5;
     double currentAngle;
 
     public GyroEngage(Drivetrain subsystem) {
@@ -29,14 +29,14 @@ public class GyroEngage extends CommandBase{
         SmartDashboard.putNumber("Current Roll", m_subsystem.getGyroRoll());
         SmartDashboard.putNumber("Current Yaw", m_subsystem.getGyroYaw());
         if (currentAngle > maxAngle) {
-            if (((maxAngle-currentAngle)/100) < -0.09) {
-                m_subsystem.tankDrive(-0.09, -0.09);
+            if (((maxAngle-currentAngle)/100) < -0.12) {
+                m_subsystem.tankDrive(-0.12, -0.12);
             } else {
                 m_subsystem.tankDrive(((maxAngle-currentAngle)/100), ((maxAngle-currentAngle)/100));
             }
         } else if (currentAngle < minAngle) {
-            if (((minAngle-currentAngle)/100) > 0.09) {
-                m_subsystem.tankDrive(0.09, 0.09);
+            if (((minAngle-currentAngle)/100) > 0.12) {
+                m_subsystem.tankDrive(0.12, 0.12);
             } else {
                 m_subsystem.tankDrive(((minAngle-currentAngle)/100), ((minAngle-currentAngle)/100));
             }
