@@ -45,8 +45,8 @@ public class ArcadeDriveLimited extends CommandBase {
     @Override
     public void execute() {
 
-        double forward = 0.9 * RobotContainer.getdriveStick().getLeftY();
-        double rotation = 0.75 * RobotContainer.getdriveStick().getLeftX();        
+        double forward = 0.75 * RobotContainer.getdriveStick().getLeftY();
+        double rotation = 0.6 * RobotContainer.getdriveStick().getLeftX();        
         
         m_drivetrain.arcadeDrive(acceleration.calculate(forward), rotation);
 
