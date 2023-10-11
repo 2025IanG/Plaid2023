@@ -152,9 +152,9 @@ private final JoystickButton subY = new JoystickButton(new XboxController(1), 4)
     //   new DeployIntake(m_intake)
     // );
 
-    driveBack.whileTrue(
-      new GyroEngage(m_drivetrain)
-    );
+    // driveBack.whileTrue(
+    //   new GyroEngage(m_drivetrain)
+    // );
   }
 
   private void configureDefaultCommands() {
