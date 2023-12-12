@@ -47,4 +47,18 @@ public class AutoPaths extends CommandBase{
             new DriveStraight(m_drive, 0.2, 190 * 2 + (1+190/100)*8)
         );
     }
+
+    public Command ClassFinal() {
+        return new SequentialCommandGroup(
+            new InstantCommand(m_drive::setBrakesOn, m_drive),
+            new DriveStraight(m_drive, 0.2, 60 * 2 + (1+60/100)*8),
+            new GyroTurnNew(m_drive, -90, 0.2, 1),
+            new DriveStraight(m_drive, 0.2, -60 * 2 + (1-60/100)*8),
+            new GyroTurnNew(m_drive, -90, 0.2, 1),
+            new DriveStraight(m_drive, 0.2, 60 * 2 + (1+60/100)*8),
+            new GyroTurnNew(m_drive, -90, 0.2, 1),
+            new DriveStraight(m_drive, 0.2, -60 * 2 + (1-60/100)*8),
+            new GyroTurn(m_drive, -90, 0.2, 1)
+        );
+    }
 }
