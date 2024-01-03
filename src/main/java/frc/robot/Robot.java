@@ -52,6 +52,7 @@ public class Robot extends TimedRobot {
         startPosChooser.setDefaultOption("Mobility Short", "b1A");
         startPosChooser.addOption("Mobility Engage", "b2B");
         startPosChooser.addOption("Mobility Long", "b3C");
+        startPosChooser.addOption("Class Final", "final");
 
         m_robotContainer.m_drivetrain.resetEncoders();
         //m_robotContainer.m_drivetrain.initGyro();

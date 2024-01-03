@@ -34,7 +34,7 @@ public class GyroTurnNew extends CommandBase {
         double leftWheelMove = (targetAngle * speed) / Math.abs(targetAngle);
         double rightWheelMove = (-1 * targetAngle * speed) / Math.abs(targetAngle);
 
-        m_subsystem.tankDrive(leftWheelMove * speedAdjust, rightWheelMove * speedAdjust);
+        m_subsystem.tankDrive(leftWheelMove, rightWheelMove);
 
         SmartDashboard.putNumber("Gyro Value: ", m_subsystem.getGyroYaw());
 

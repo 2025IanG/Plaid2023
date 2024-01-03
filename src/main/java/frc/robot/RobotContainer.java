@@ -202,6 +202,9 @@ public static XboxController getsubStick() {
         //Long Drive auto option
         autoCommand = new SequentialCommandGroup(p.MobilityLong());
         break;
+        case "final":
+        autoCommand = new SequentialCommandGroup(p.ClassFinal());
+        break;
     }
 
     return autoCommand;

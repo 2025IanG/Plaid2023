@@ -51,6 +51,8 @@ public class DriveStraight extends CommandBase {
 
     	vBus = Math.abs(percentVBus) * Math.signum(inches);
 
+		m_subsystem.resetEncoders();
+
 		startValLeft = m_subsystem.getLeftEncoderPosition(0);
 		startValRight = m_subsystem.getRightEncoderPosition(0);
 		endValLeft = startValLeft + m_subsystem.inchesToNativeUnits(inches);
